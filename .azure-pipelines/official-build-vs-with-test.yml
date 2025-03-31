@@ -22,14 +22,20 @@ resources:
       endpoint: sonic-net
     - repository: buildimage
       type: github
-      name: lerry-lee/sonic-buildimage
+      name: sonic-net/sonic-buildimage
       endpoint: sonic-net
       ref: master
 
 variables:
-  - template: template-variables.yml@buildimage
-  - name: BUILD_BRANCH
-    value: $(Build.SourceBranchName)
+  DEFAULT_CONTAINER_REGISTRY: 'publicmirror.azurecr.io'
+  COMMON_LIB_BUILD_ENVS: 'bookworm'
+  SONIC_SLAVE_DOCKER_DRIVER: 'overlay2'
+  SONIC_BUILD_RETRY_COUNT: 3
+  SONIC_BUILD_RETRY_INTERVAL: 600
+  DOCKER_BUILDKIT: 0
+  DOCKER_BUILD_TIMEOUT: 3600
+  MIRROR_SNAPSHOT: y
+  BUILD_BRANCH: $(Build.SourceBranchName)
 
 stages:
   - stage: BuildVS
