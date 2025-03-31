@@ -22,12 +22,12 @@ resources:
       endpoint: sonic-net
     - repository: buildimage
       type: github
-      name: sonic-net/sonic-buildimage
+      name: lerry-lee/sonic-buildimage
       endpoint: sonic-net
       ref: master
 
 variables:
-  - template: ../.azure-pipelines/template-variables.yml@buildimage
+  - template: template-variables.yml@buildimage
   - name: BUILD_BRANCH
     value: $(Build.SourceBranchName)
 
