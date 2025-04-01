@@ -43,7 +43,7 @@ stages:
 
   - stage: Test
     dependsOn: BuildVS
-    condition: and(succeeded(), in(dependencies.BuildVS.result, 'Succeeded', 'SucceededWithIssues')))
+    condition: and(succeeded(), in(dependencies.BuildVS.result, 'Succeeded', 'SucceededWithIssues'))
     variables:
       - group: SONiC-Elastictest
 
